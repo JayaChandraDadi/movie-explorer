@@ -15,10 +15,10 @@ Users can:
 ## 🌍 Live Demo
 
 Hosted Application:
-YOUR_VERCEL_URL
+(https://movieexplorer-o143ouidg-jayachandradadis-projects.vercel.app/)
 
 GitHub Repository:
-YOUR_GITHUB_URL
+(https://github.com/JayaChandraDadi/movie-explorer)
 
 ---
 
