@@ -1,36 +1,220 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Movie Explorer
 
-## Getting Started
+A full-stack Movie Explorer application built using Next.js and the TMDB API.
 
-First, run the development server:
+Users can:
+- Search movies by title
+- View movie details
+- Add/remove favorites
+- Add personal rating (1–5)
+- Add notes to favorites
+- Persist favorites using LocalStorage
+
+---
+
+## 🌍 Live Demo
+
+Hosted Application:
+YOUR_VERCEL_URL
+
+GitHub Repository:
+YOUR_GITHUB_URL
+
+---
+
+## 🚀 Features
+
+### 🔎 Search Movies
+- Search movies by title
+- Debounced search (400ms)
+- Shows title, year, and short overview
+- Handles empty results and errors
+
+### 🎬 View Details
+- Click a movie title
+- Displays:
+  - Poster
+  - Release year
+  - Runtime
+  - Full overview
+
+### ⭐ Favorites System
+- Add / Remove favorites
+- Rate from 1–5
+- Add personal notes
+- Stored in browser LocalStorage
+
+### 💾 Persistence
+- Favorites persist after page refresh
+
+### ⚠ Error Handling
+- Gracefully handles:
+  - Network failures
+  - API errors
+  - No results found
+
+---
+
+## 🛠 Tech Stack
+
+- Next.js (App Router)
+- React
+- TypeScript
+- TMDB API
+- LocalStorage (for persistence)
+- Vercel (deployment)
+
+---
+
+# ⚙️ Setup Instructions (Run Locally)
+
+## 1️⃣ Clone the repository
 
 ```bash
+git clone https://github.com/JayaChandraDadi/movie-explorer
+cd movie-explorer
+
+2️⃣ Install dependencies
+npm install
+
+3️⃣ Create environment variables
+
+Create a file named:
+
+.env.local
+
+Add:
+
+TMDB_API_KEY=YOUR_TMDB_API_KEY
+TMDB_BASE_URL=https://api.themoviedb.org/3
+
+⚠ Important:
+
+Do NOT commit .env.local
+
+This file is ignored by git
+
+4️⃣ Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open in browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Deployment (Vercel)
 
-## Learn More
+Push project to GitHub
 
-To learn more about Next.js, take a look at the following resources:
+Import repository into Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Go to:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Project → Settings → Environment Variables
 
-## Deploy on Vercel
+Add:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+TMDB_API_KEY=YOUR_TMDB_API_KEY
+TMDB_BASE_URL=https://api.themoviedb.org/3
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Redeploy
+
+🔐 API Security Design
+
+The frontend does NOT call TMDB directly.
+
+Instead it calls internal API routes:
+
+/api/tmdb/search?query=...
+/api/tmdb/movie/:id
+
+These routes:
+
+Run server-side
+
+Use environment variables
+
+Keep the API key secure
+
+Prevent exposing keys in client bundle
+
+🧠 Technical Decisions & Tradeoffs
+1️⃣ API Proxy (Security First)
+
+Decision: Use Next.js API routes as a proxy
+Reason: Protect TMDB API key
+Tradeoff: Slight additional server hop
+
+2️⃣ LocalStorage for Persistence
+
+Decision: Store favorites in LocalStorage
+Reason: Simple, fast implementation
+Tradeoff: Data is browser-specific
+
+If more time:
+
+Add database
+
+Add user accounts
+
+Sync across devices
+
+3️⃣ Simple State Management
+
+Decision: React hooks + custom useFavorites hook
+Reason: Clean and lightweight
+Tradeoff: Not scalable for large apps
+
+4️⃣ Debounced Search
+
+Decision: 400ms debounce
+Reason: Reduce unnecessary API calls
+Tradeoff: Small delay before showing results
+
+🚧 Known Limitations
+
+No pagination for search results
+
+No caching for repeated searches
+
+No backend database
+
+Minimal UI styling
+
+No authentication
+
+No automated tests
+
+🔮 Improvements With More Time
+
+Add pagination / infinite scroll
+
+Add server-side database
+
+Add caching layer
+
+Improve UI responsiveness
+
+Add dark/light mode toggle
+
+Add unit & integration tests
+
+Add accessibility improvements
+
+📄 TMDB Attribution
+
+This product uses the TMDB API but is not endorsed or certified by TMDB.
+
+
+---
+
+# ✅ What To Do Now
+
+1. Open your project
+2. Replace entire `README.md` with this
+3. Replace placeholders
+4. Commit & push:
+
+```bash
+git add .
+git commit -m "Add final README"
+git push
